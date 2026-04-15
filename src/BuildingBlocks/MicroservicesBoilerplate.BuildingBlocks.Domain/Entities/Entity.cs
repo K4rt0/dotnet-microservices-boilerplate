@@ -5,16 +5,23 @@ public abstract class Entity<TId>
 {
     public virtual TId Id { get; protected set; } = default!;
 
-    public Entity() { }
+    protected Entity() { }
 
-    public Entity(TId id)
+    protected Entity(TId id)
     {
         Id = id ?? throw new ArgumentNullException(nameof(id));
     }
 
     public override bool Equals(object? obj)
-        => obj is Entity<TId> other && EqualityComparer<TId>.Default.Equals(Id, other.Id);
+    {
+        if (obj is not Entity<TId> other) return false;
+        if (ReferenceEquals(this, other)) return true;
+        if (EqualityComparer<TId>.Default.Equals(Id, default!) ||
+            EqualityComparer<TId>.Default.Equals(other.Id, default!))
+            return false;
+        return EqualityComparer<TId>.Default.Equals(Id, other.Id);
+    }
 
     public override int GetHashCode()
-        => Id is null ? 0 : EqualityComparer<TId>.Default.GetHashCode(Id);
+        => EqualityComparer<TId>.Default.Equals(Id, default!) ? base.GetHashCode() : Id.GetHashCode();
 }

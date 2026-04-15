@@ -9,7 +9,7 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IHasConcurrencyStamp, ID
     private ICollection<DomainEvent>? _distributedEvents;
     private ICollection<DomainEvent>? _localEvents;
 
-    public AggregateRoot()
+    protected AggregateRoot()
     {
         ConcurrencyStamp = Guid.NewGuid().ToString("N");
     }
