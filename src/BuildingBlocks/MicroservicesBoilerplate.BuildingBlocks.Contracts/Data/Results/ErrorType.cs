@@ -1,4 +1,4 @@
-namespace MicroservicesBoilerplate.BuildingBlocks.Domain.Results;
+namespace MicroservicesBoilerplate.BuildingBlocks.Contracts.Data.Results;
 
 public enum ErrorType
 {

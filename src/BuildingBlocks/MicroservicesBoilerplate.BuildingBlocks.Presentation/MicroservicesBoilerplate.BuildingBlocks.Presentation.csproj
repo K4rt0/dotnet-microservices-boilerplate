@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Application\MicroservicesBoilerplate.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Contracts\MicroservicesBoilerplate.BuildingBlocks.Contracts.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

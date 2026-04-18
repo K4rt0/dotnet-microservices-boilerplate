@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 using MicroservicesBoilerplate.BuildingBlocks.Domain.Entities;
-using MicroservicesBoilerplate.BuildingBlocks.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroservicesBoilerplate.BuildingBlocks.Infrastructure.Repositories;
@@ -25,23 +24,13 @@ public class EfCoreRepository<TDbContext, TEntity, TKey> : IEfCoreRepository<TEn
 
     public DbSet<TEntity> DbSet => _context.Set<TEntity>();
 
-    public Task<DbContext> GetDbContextAsync()
-        => Task.FromResult<DbContext>(_context);
-
-    public Task<DbSet<TEntity>> GetDbSetAsync()
-        => Task.FromResult(DbSet);
-
     #endregion
 
     #region IReadOnlyBasicRepository Methods
 
     public async Task<List<TEntity>> GetListAsync(bool tracking = false, CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> query = DbSet;
-
-        if (!tracking)
-            query = query.AsNoTracking();
-
+        var query = tracking ? DbSet : DbSet.AsNoTracking();
         return await query.ToListAsync(cancellationToken);
     }
 
@@ -55,10 +44,7 @@ public class EfCoreRepository<TDbContext, TEntity, TKey> : IEfCoreRepository<TEn
         bool tracking = false,
         CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> query = DbSet;
-
-        if (!tracking)
-            query = query.AsNoTracking();
+        var query = tracking ? DbSet : DbSet.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(sorting))
             query = ApplySorting(query, sorting);
@@ -109,11 +95,7 @@ public class EfCoreRepository<TDbContext, TEntity, TKey> : IEfCoreRepository<TEn
 
     public async Task<TEntity?> FindAsync(TKey id, bool tracking = false, CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> query = DbSet;
-
-        if (tracking == false)
-            query = query.AsNoTracking();
-
+        var query = tracking ? DbSet : DbSet.AsNoTracking();
         return await query.FirstOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
     }
 
@@ -126,11 +108,7 @@ public class EfCoreRepository<TDbContext, TEntity, TKey> : IEfCoreRepository<TEn
         bool tracking = false,
         CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> query = DbSet;
-
-        if (tracking == false)
-            query = query.AsNoTracking();
-
+        var query = tracking ? DbSet : DbSet.AsNoTracking();
         return await query.Where(predicate).ToListAsync(cancellationToken);
     }
 
@@ -222,11 +200,7 @@ public class EfCoreRepository<TDbContext, TEntity, TKey> : IEfCoreRepository<TEn
     {
         ArgumentNullException.ThrowIfNull(predicate);
 
-        IQueryable<TEntity> query = DbSet;
-
-        if (tracking == false)
-            query = query.AsNoTracking();
-
+        var query = tracking ? DbSet : DbSet.AsNoTracking();
         return await query.FirstOrDefaultAsync(predicate, cancellationToken);
     }
 

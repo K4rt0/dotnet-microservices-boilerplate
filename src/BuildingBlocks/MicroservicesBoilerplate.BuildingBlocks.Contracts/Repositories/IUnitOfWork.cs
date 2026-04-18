@@ -1,4 +1,4 @@
-namespace MicroservicesBoilerplate.BuildingBlocks.Application.Data;
+namespace MicroservicesBoilerplate.BuildingBlocks.Contracts.Repositories;
 
 public interface IUnitOfWork : IDisposable, IAsyncDisposable
 {

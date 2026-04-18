@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Domain\MicroservicesBoilerplate.BuildingBlocks.Domain.csproj" />
     <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Application\MicroservicesBoilerplate.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Contracts\MicroservicesBoilerplate.BuildingBlocks.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace MicroservicesBoilerplate.BuildingBlocks.Domain.Results;
+namespace MicroservicesBoilerplate.BuildingBlocks.Contracts.Data.Results;
 
 public sealed record Error(string Code, string Message, ErrorType Type = ErrorType.Unexpected)
 {

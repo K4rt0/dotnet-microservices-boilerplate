@@ -1,6 +1,6 @@
 using MicroservicesBoilerplate.BuildingBlocks.Domain.Entities;
 
-namespace MicroservicesBoilerplate.BuildingBlocks.Domain.Repositories;
+namespace MicroservicesBoilerplate.BuildingBlocks.Contracts.Repositories;
 
 public interface IReadOnlyBasicRepository<TEntity>
 {
@@ -21,4 +21,5 @@ public interface IReadOnlyBasicRepository<TEntity, TKey> : IReadOnlyBasicReposit
 {
     Task<TEntity> GetAsync(TKey id, bool tracking = true, CancellationToken cancellationToken = default);
     Task<TEntity?> FindAsync(TKey id, bool tracking = true, CancellationToken cancellationToken = default);
+    // Task<CursorPageRequest> GetCursorPagedListAsync
 }

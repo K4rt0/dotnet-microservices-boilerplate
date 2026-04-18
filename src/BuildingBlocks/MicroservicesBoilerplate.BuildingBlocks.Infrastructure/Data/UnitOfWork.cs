@@ -1,4 +1,4 @@
-using MicroservicesBoilerplate.BuildingBlocks.Application.Data;
+using MicroservicesBoilerplate.BuildingBlocks.Contracts.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 

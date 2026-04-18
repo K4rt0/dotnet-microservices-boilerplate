@@ -1,6 +1,7 @@
 using MicroservicesBoilerplate.BuildingBlocks.Domain.Entities;
-using MicroservicesBoilerplate.BuildingBlocks.Domain.Repositories;
+using MicroservicesBoilerplate.BuildingBlocks.Contracts.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace MicroservicesBoilerplate.BuildingBlocks.Infrastructure.Repositories;
 
@@ -10,10 +11,6 @@ public interface IEfCoreRepository<TEntity> : IRepository<TEntity>
     DbContext DbContext { get; }
 
     DbSet<TEntity> DbSet { get; }
-
-    Task<DbContext> GetDbContextAsync();
-
-    Task<DbSet<TEntity>> GetDbSetAsync();
 }
 
 public interface IEfCoreRepository<TEntity, TKey> : IEfCoreRepository<TEntity>, IRepository<TEntity, TKey>

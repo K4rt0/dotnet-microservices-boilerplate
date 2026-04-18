@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MicroservicesBoilerplate.BuildingBlocks.Domain.Entities;
 
-namespace MicroservicesBoilerplate.BuildingBlocks.Domain.Repositories;
+namespace MicroservicesBoilerplate.BuildingBlocks.Contracts.Repositories;
 
 public interface IBasicRepository<TEntity> : IReadOnlyBasicRepository<TEntity>
 {
