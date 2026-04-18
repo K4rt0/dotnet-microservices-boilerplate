@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Domain\MicroservicesBoilerplate.BuildingBlocks.Domain.csproj" />
     <ProjectReference Include="..\MicroservicesBoilerplate.BuildingBlocks.Application\MicroservicesBoilerplate.BuildingBlocks.Application.csproj" />
   </ItemGroup>
 

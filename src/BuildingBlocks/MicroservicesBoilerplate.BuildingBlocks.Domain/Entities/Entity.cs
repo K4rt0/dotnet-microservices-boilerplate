@@ -1,19 +1,26 @@
 namespace MicroservicesBoilerplate.BuildingBlocks.Domain.Entities;
 
-public abstract class Entity<TId>
+public abstract class Entity<TId> : IEntity<TId>
     where TId : notnull
 {
     public virtual TId Id { get; protected set; } = default!;
 
-    protected Entity() { }
+    protected Entity()
+    {
+        if (typeof(TId) == typeof(Guid))
+        {
+            Id = (TId)(object)Guid.CreateVersion7();
+        }
+    }
 
     protected Entity(TId id)
     {
-        Id = id ?? throw new ArgumentNullException(nameof(id));
+        Id = id;
     }
 
     public override bool Equals(object? obj)
     {
+        if (obj is null) return false;
         if (obj is not Entity<TId> other) return false;
         if (ReferenceEquals(this, other)) return true;
         if (EqualityComparer<TId>.Default.Equals(Id, default!) ||
